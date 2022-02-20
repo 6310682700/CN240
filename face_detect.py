@@ -7,12 +7,12 @@ import os
 
 # 
 # Type this into Terminal if you open this with VScode or run in cmd
-# python blur_detection.py -i
+# python face_detect.py -i
 # P.S. if you run to in error check the directory if it correct
 # 
 
 # Path
-path = "/Users/Allumile/Desktop/facial_expressions/images/"
+path = "/Users/Allumile/Desktop/facial_expression/images/"
 cascPath = "haarcascade_frontalface_default.xml" # Don't touch this
 
 # Create the haar cascade
@@ -20,21 +20,21 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 
 # Read the image
 # Warning You need to change paht and images path to your directory #
-images = [cv2.imread(file) for file in glob.glob("/Users/Allumile/Desktop/facial_expressions/images/*.jpg".format('images'))]
-arr = os.listdir('/Users/Allumile/Desktop/facial_expressions/images')
+images = [cv2.imread(file) for file in glob.glob("/Users/Allumile/Desktop/facial_expression/images/*.jpg".format('images'))]
+arr = os.listdir('/Users/Allumile/Desktop/facial_expression/images')
 
 # Counting
 usable = 0
 index_arr = 0
 
 # Creating csv and header
-f = open('usable_face.csv', 'w')
-wr = csv.writer(f)
 header = ['name', 'width', 'height']
+f = open('usable_face.csv', 'w', newline='')
+wr = csv.writer(f)
 wr.writerow(header)
 
 # Array of picture name
-arr = os.listdir('/Users/Allumile/Desktop/facial_expressions/images')
+arr = os.listdir('/Users/Allumile/Desktop/facial_expression/images')
 
 # Loop all the picture
 for image in images:
@@ -59,7 +59,7 @@ for image in images:
             wr.writerow([arr[index_arr], w, h])
 
         cv2.imshow("Faces found", image)
-        cv2.waitKey(0) # Comment this if you don't want image to display
+        # cv2.waitKey(0) # Comment this if you don't want image to display
     
     index_arr += 1
 
